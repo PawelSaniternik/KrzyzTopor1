@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\v1;
 
 use App\Dto\GaleriaItemDto;
@@ -18,24 +20,24 @@ class GaleriaController extends AbstractController
         $page = max(1, $request->query->getInt('page', 1));
         $limit = max(1, $request->query->getInt('limit', 10));
 
-        // 1. Pobranie danych i łącznej liczby rekordów
+        // 1. Fetch data and the total number of records
         $totalItems = $repository->count([]);
         $totalPages = (int) ceil($totalItems / $limit);
         
         $entities = $repository->findBy(
             [],
-            ['kolejnosc' => 'ASC'],
+            ['sequence' => 'ASC'],
             $limit,
             ($page - 1) * $limit
         );
 
-        // 2. Mapowanie encji na GaleriaItemDto
+        // 2. Map entities to GaleriaItemDto
         $itemsDto = array_map(
             fn($galeria) => GaleriaItemDto::fromEntity($galeria),
             $entities
         );
 
-        // 3. Budowa DTO odpowiedzi
+        // 3. Build the response DTO
         $responseDto = new PaginatedResponseDto(
             page: $page,
             limit: $limit,
@@ -44,7 +46,7 @@ class GaleriaController extends AbstractController
             items: $itemsDto
         );
 
-        // 4. Zwrócenie odpowiedzi JSON
+        // 4. Return the JSON response
         return $this->json($responseDto);
     }
 }

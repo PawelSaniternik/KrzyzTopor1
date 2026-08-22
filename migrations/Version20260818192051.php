@@ -20,7 +20,7 @@ final class Version20260818192051 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE cennik (id INT AUTO_INCREMENT NOT NULL, obowiazuje_od DATE NOT NULL, opis VARCHAR(255) NOT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('CREATE TABLE IF NOT EXISTS cennik (id INT AUTO_INCREMENT NOT NULL, valid_from DATE NOT NULL, `desc` VARCHAR(255) NOT NULL, PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4');
     }
 
     public function down(Schema $schema): void

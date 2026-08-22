@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -15,51 +16,51 @@ class Galeria
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $url_zdjecia = null;
+    private ?string $picture_url = null;
 
     #[ORM\Column]
-    private ?int $kolejnosc = null;
+    private ?int $sequence = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $opublikowane = null;
+    private ?\DateTime $publishedon = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUrlZdjecia(): ?string
+    public function getPictureUrl(): ?string
     {
-        return $this->url_zdjecia;
+        return $this->picture_url;
     }
 
-    public function setUrlZdjecia(string $url_zdjecia): static
+    public function setPictureUrl(string $picture_url): static
     {
-        $this->url_zdjecia = $url_zdjecia;
+        $this->picture_url = $picture_url;
 
         return $this;
     }
 
-    public function getKolejnosc(): ?int
+    public function getSequence(): ?int
     {
-        return $this->kolejnosc;
+        return $this->sequence;
     }
 
-    public function setKolejnosc(int $kolejnosc): static
+    public function setSequence(int $sequence): static
     {
-        $this->kolejnosc = $kolejnosc;
+        $this->sequence = $sequence;
 
         return $this;
     }
 
-    public function getOpublikowane(): ?\DateTime
+    public function getPublishedon(): ?\DateTime
     {
-        return $this->opublikowane;
+        return $this->publishedon;
     }
 
-    public function setOpublikowane(\DateTime $opublikowane): static
+    public function setPublishedon(\DateTime $publishedon): static
     {
-        $this->opublikowane = $opublikowane;
+        $this->publishedon = $publishedon;
 
         return $this;
     }

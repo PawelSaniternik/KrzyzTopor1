@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace App\Dto;
 
 use App\Entity\Galeria;
@@ -7,17 +10,17 @@ use App\Entity\Galeria;
 readonly class GaleriaItemDto
 {
     public function __construct(
-        public string $urlZdjecia,
-        public int $kolejnosc,
-        public string $opublikowane // Format YYYY-MM-DD
+        public string $pictureUrl,
+        public int $sequence,
+        public string $publishedOn // Format YYYY-MM-DD
     ) {}
 
     public static function fromEntity(Galeria $galeria): self
     {
         return new self(
-            urlZdjecia: $galeria->getUrlZdjecia(),
-            kolejnosc: $galeria->getKolejnosc(),
-            opublikowane: $galeria->getOpublikowane()?->format('Y-m-d') ?? ''
+            pictureUrl: $galeria->getPictureUrl(),
+            sequence: $galeria->getSequence(),
+            publishedOn: $galeria->getPublishedOn()?->format('Y-m-d') ?? ''
         );
     }
 }

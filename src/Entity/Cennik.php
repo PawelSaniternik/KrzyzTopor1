@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\CennikRepository;
@@ -15,36 +17,36 @@ class Cennik
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $obowiazuje_od = null;
+    private ?\DateTime $valid_from = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $opis = null;
+    private ?string $desc = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getObowiazujeOd(): ?\DateTime
+    public function getValidFrom(): ?\DateTime
     {
-        return $this->obowiazuje_od;
+        return $this->valid_from;
     }
 
-    public function setObowiazujeOd(\DateTime $obowiazuje_od): static
+    public function setValidFrom(\DateTime $valid_from): static
     {
-        $this->obowiazuje_od = $obowiazuje_od;
+        $this->valid_from = $valid_from;
 
         return $this;
     }
 
-    public function getOpis(): ?string
+    public function getDesc(): ?string
     {
-        return $this->opis;
+        return $this->desc;
     }
 
-    public function setOpis(string $opis): static
+    public function setDesc(string $desc): static
     {
-        $this->opis = $opis;
+        $this->desc = $desc;
 
         return $this;
     }

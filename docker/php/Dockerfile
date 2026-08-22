@@ -1,6 +1,6 @@
-FROM php:8.3-fpm-alpine
-
-# Instalacja zależności systemowych i rozszerzeń PHP dla MariaDB / MySQL
+#FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
+# Install system dependencies and PHP extensions for MariaDB / MySQL
 RUN apk add --no-cache \
     git \
     unzip \
@@ -19,10 +19,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Kopiowanie plików aplikacji Symfony
+# Copy Symfony application files
 COPY . .
 
-# Instalacja zależności Composer
+# Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 EXPOSE 9000
